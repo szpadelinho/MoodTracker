@@ -1,14 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:id="@+id/mood_detail"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MoodDetailsFragment">
+    tools:context=".fragments.MoodDetailsFragment"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/content">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:id="@+id/mood_detail_emoji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":O"
+        android:textSize="100sp"
+        android:maxWidth="300dp"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/mood_detail_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Default description"
+        android:textSize="20sp"
+        android:maxWidth="300dp"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/mood_detail_feeling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Default feeling"
+        android:textSize="25sp"
+        android:maxWidth="300dp"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/mood_detail_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Default type"
+        android:textSize="15sp"
+        android:maxWidth="300dp"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/mood_detail_statements"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Default statements"
+        android:textSize="15sp"
+        android:maxWidth="300dp"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/mood_detail_importance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Default importance"
+        android:textSize="15sp"
+        android:maxWidth="300dp"
+        android:layout_margin="10dp"
+        />
+    <RatingBar
+        android:id="@+id/mood_detail_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:isIndicator="true"
+        android:layout_margin="10dp"
+        />
+    <Button
+        android:id="@+id/mood_detail_delete"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Delete my mood?"
+        android:layout_margin="30dp"
+        />
+</LinearLayout>

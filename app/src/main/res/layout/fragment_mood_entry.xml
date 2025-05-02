@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MoodEntryFragment">
+    tools:context=".fragments.MoodEntryFragment"
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+    <EditText
+        android:id="@+id/mood_entry_name"
+        android:layout_width="200dp"
+        android:lines="3"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        />
+    <RadioGroup
+        android:id="@+id/mood_entry_feel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Happy"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Content"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sad"
+            />
+    </RadioGroup>
+    <Spinner
+        android:id="@+id/mood_entry_category"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+    <CheckBox
+        android:id="@+id/mood_entry_check_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I was productive today"
+        android:layout_gravity="center"
+        />
+    <CheckBox
+        android:id="@+id/mood_entry_check_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I was physically active today"
+        android:layout_gravity="center"
+        />
+    <CheckBox
+        android:id="@+id/mood_entry_check_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I met someone today"
+        android:layout_gravity="center"
+        />
+    <RatingBar
+        android:id="@+id/mood_entry_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize=".5"
+        android:layout_gravity="center"
+        />
+    <Switch
+        android:id="@+id/mood_entry_importance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="It was an important day"
+        android:layout_gravity="center"
+        />
+    <Button
+        android:id="@+id/mood_entry_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save my day"
+        android:layout_gravity="center"
+        />
+</LinearLayout>

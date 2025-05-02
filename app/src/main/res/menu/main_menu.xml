@@ -13,5 +13,11 @@
         android:icon="@android:drawable/ic_menu_manage"
         app:showAsAction="always"
         />
+    <item
+        android:id="@+id/moodGraphFragment"
+        android:title="Graphs"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        app:showAsAction="always"
+        />
 
 </menu>

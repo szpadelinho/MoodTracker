@@ -5,30 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.RatingBar
+import android.widget.TextView
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.moodtracker.R
+import com.example.moodtracker.data.FakeMoodRepository
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MoodDetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MoodDetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var moodDesc: String? = null
+    private var moodFeel: String? = null
+    private var moodType: String? = null
+    private var moodStatements: MutableList<String>? = null
+    private var moodImportance: Boolean? = false
+    private var moodRating: Float = 0.0f
+
+    private val args: MoodDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +33,46 @@ class MoodDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_mood_details, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MoodDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MoodDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val moodDescTextView: TextView = view.findViewById(R.id.mood_detail_desc)
+        val moodFeelTextView: TextView = view.findViewById(R.id.mood_detail_feeling)
+        val moodTypeTextView: TextView = view.findViewById(R.id.mood_detail_type)
+        val moodStatementsTextView: TextView = view.findViewById(R.id.mood_detail_statements)
+        val moodImportanceTextView: TextView = view.findViewById(R.id.mood_detail_importance)
+        val moodRating: RatingBar = view.findViewById(R.id.mood_detail_rating)
+        val moodEmojiTextView: TextView = view.findViewById(R.id.mood_detail_emoji)
+        val moodButton: Button = view.findViewById(R.id.mood_detail_delete)
+        val moodSchema: LinearLayout = view.findViewById(R.id.mood_detail)
+
+        val selectedMood = args.mood
+
+        moodDescTextView.text = selectedMood.description
+        moodFeelTextView.text = selectedMood.feeling
+        moodTypeTextView.text = selectedMood.type
+        moodStatementsTextView.text = selectedMood.statements.joinToString(",\n")
+        moodImportanceTextView.text = if(selectedMood.importance) "It is something important to me" else "Does not really matter"
+        moodRating.rating = selectedMood.rating
+        moodEmojiTextView.text = when (selectedMood.feeling){
+            "Happy" -> ":D"
+            "Content" -> ":)"
+            "Sad" -> ":("
+            else -> "O_o"
+        }
+
+        moodSchema.setBackgroundResource(
+            when(selectedMood.feeling){
+                "Happy" -> R.color.happy
+                "Content" -> R.color.content
+                "Sad" -> R.color.sad
+                else -> R.color.confused
             }
+        )
+
+        moodButton.setOnClickListener {
+            FakeMoodRepository.removeMood(selectedMood)
+            findNavController().popBackStack()
+        }
     }
 }
