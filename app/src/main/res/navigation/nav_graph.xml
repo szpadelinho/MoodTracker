@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/moodHistoryFragment">
+
+    <fragment
+        android:id="@+id/moodDetailsFragment"
+        android:name="com.example.moodtracker.fragments.MoodDetailsFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_mood_details"
+        />
+
+    <fragment
+        android:id="@+id/moodEntryFragment"
+        android:name="com.example.moodtracker.fragments.MoodEntryFragment"
+        android:label="Entry"
+        tools:layout="@layout/fragment_mood_entry"
+        />
+
+    <fragment
+        android:id="@+id/moodHistoryFragment"
+        android:name="com.example.moodtracker.fragments.MoodHistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_mood_history"
+        />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.moodtracker.fragments.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings"
+        />
+
+</navigation>
