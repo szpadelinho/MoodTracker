@@ -11,6 +11,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.moodtracker.MainActivity
 import com.example.moodtracker.R
 import com.example.moodtracker.data.FakeMoodRepository
 
@@ -48,6 +49,11 @@ class MoodDetailsFragment : Fragment() {
 
         val selectedMood = args.mood
 
+        if(activity is MainActivity)
+        {
+            (requireActivity() as MainActivity).setToolbarBackgroundColor(selectedMood.feeling)
+        }
+
         moodDescTextView.text = selectedMood.description
         moodFeelTextView.text = selectedMood.feeling
         moodTypeTextView.text = selectedMood.type
@@ -73,6 +79,13 @@ class MoodDetailsFragment : Fragment() {
         moodButton.setOnClickListener {
             FakeMoodRepository.removeMood(selectedMood)
             findNavController().popBackStack()
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        if (activity is MainActivity) {
+            (requireActivity() as MainActivity).resetToolbarBackgroundColor()
         }
     }
 }

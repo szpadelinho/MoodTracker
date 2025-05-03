@@ -1,11 +1,13 @@
 package com.example.moodtracker
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
@@ -17,6 +19,7 @@ import com.google.android.material.appbar.MaterialToolbar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
+    private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        val toolbar = findViewById<Toolbar>(R.id.main_toolbar)
+        toolbar = findViewById(R.id.main_toolbar)
         setSupportActionBar(toolbar)
 
         NavigationUI.setupActionBarWithNavController(this, navController)
@@ -50,5 +53,25 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item)
+    }
+
+    fun setToolbarBackgroundColor(feeling: String) {
+        val color = when (feeling) {
+            "Happy" -> ContextCompat.getColor(this, R.color.happy)
+            "Content" -> ContextCompat.getColor(this, R.color.content)
+            "Sad" -> ContextCompat.getColor(this, R.color.sad)
+            else -> ContextCompat.getColor(this, R.color.confused)
+        }
+        toolbar.setBackgroundColor(color)
+    }
+
+    fun resetToolbarBackgroundColor() {
+        val typedValue = TypedValue()
+        theme.resolveAttribute(androidx.appcompat.R.attr.colorError, typedValue, true)
+        if (typedValue.type >= TypedValue.TYPE_FIRST_COLOR_INT && typedValue.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+            toolbar.setBackgroundColor(typedValue.data)
+        } else {
+            android.util.Log.e("MainActivity", "colorOnTertiary is not a color resource")
+        }
     }
 }

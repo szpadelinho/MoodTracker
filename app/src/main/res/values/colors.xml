@@ -21,7 +21,7 @@
     <color name="accent_dark">#0089C8</color>
 
     <color name="happy">#803CFF00</color>
-    <color name="content">#809500FF</color>
-    <color name="sad">#80960066</color>
+    <color name="content">#80EA00FF</color>
+    <color name="sad">#80170096</color>
     <color name="confused">#80FFFB00</color>
 </resources>
